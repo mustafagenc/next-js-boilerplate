@@ -1,4 +1,5 @@
 "use client";
+
 import type { ThemeProviderProps } from "next-themes";
 
 import * as React from "react";
@@ -24,7 +25,15 @@ export function HeroProviders({ children, themeProps }: ProvidersProps) {
 
   return (
     <HeroUIProvider navigate={router.push}>
-      <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+      <NextThemesProvider
+        disableTransitionOnChange
+        enableSystem
+        defaultTheme="system"
+        storageKey="ekip.theme"
+        {...themeProps}
+      >
+        {children}
+      </NextThemesProvider>
     </HeroUIProvider>
   );
 }
